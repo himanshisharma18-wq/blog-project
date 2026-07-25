@@ -29,17 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Click redirection logic: Sends selection details forward to explorearticle.html page
-    // Look for this block in script.js and update the window.location.href:
-categoryCards.forEach(card => {
-    card.addEventListener('click', () => {
-        const catKey = card.getAttribute('data-category');
-        
-        // Updated path to step inside your folder first:
-        window.location.href = `/explorearticle/explorearticleindex.html?category=${catKey}`;
+    categoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const catKey = card.getAttribute('data-category');
+            window.location.href = `/explorearticle/explorearticleindex.html?category=${catKey}`;
+        });
     });
-});
 
-    // Newsletter box logic
+    // 3. Newsletter box logic
     const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', (e) => {
@@ -48,22 +45,8 @@ categoryCards.forEach(card => {
             newsletterForm.reset();
         });
     }
-});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// === APPEND THIS SEARCH REDIRECT AT THE BOTTOM ===
+    // 4. Search Redirect
     const mainSearchInput = document.getElementById('mainSearchInput');
     const mainSearchBtn = document.getElementById('mainSearchBtn');
 
@@ -80,5 +63,62 @@ categoryCards.forEach(card => {
             if (e.key === 'Enter') executeMainSearch();
         });
     }
-    
-// THIS CLOSING BRACKET SHOULD BE THE VERY LAST LINE OF YOUR FILE
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 5. Admin Password Verification Link
+    const adminBtn = document.getElementById('adminLink');
+
+    if (adminBtn) {
+        adminBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            const enteredPassword = prompt("Enter Admin Password:");
+
+            if (!enteredPassword) return;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/verify-admin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: enteredPassword })
+                });
+
+                // Check if backend returned valid JSON (prevents "Unexpected token '<'" crash on 404 HTML pages)
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error(`Server returned HTML/non-JSON response with status ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Normalize URL formatting to prevent double slash bugs (//secret-admin)
+                    const route = data.adminUrl.startsWith('/') ? data.adminUrl : `/${data.adminUrl}`;
+                    window.location.href = `http://localhost:5000${route}`;
+                } else {
+                    alert(data.message || "Invalid Password!");
+                }
+            } catch (err) {
+                console.error("Error verifying admin password:", err);
+                alert("Could not connect to backend server or endpoint not found.");
+            }
+        });
+    }
+});
