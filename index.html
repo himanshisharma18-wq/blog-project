@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code & Campus - Tech Guides and Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar" id="homeSection">
+        <div class="nav-container">
+            <div class="logo" style="cursor: pointer;" id="logoHome">
+                <span class="logo-icon">&lt;/&gt;</span> <span class="logo-text">Code <span class="amp">&amp;</span> Campus</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#homeSection" class="active" id="navHome">Home</a>
+                <a href="/explorearticle/explorearticleindex.html" id="navArticles">All Articles</a>
+                <a href="#categoriesBlock" id="navCategories">Categories</a>
+                <a href="#aboutSection" id="navAbout">About</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="search-box-container">
+    <!-- Make sure id="mainSearchInput" is present -->
+    <input type="text" id="mainSearchInput" placeholder="Search articles...">
+    <!-- Make sure id="mainSearchBtn" is present -->
+    <button class="search-btn" id="mainSearchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+                <button class="subscribe-btn-nav" id="scrollToSubscribe"><i class="fa-regular fa-envelope"></i> Subscribe</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section" id="heroBlock">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge">TECH. CODE. GROW.</span>
+                <h1>Tech guides and tools to level up your student and developer life.</h1>
+                <p>Practical guides, honest reviews and best resources for students, developers and tech enthusiasts.</p>
+                <div class="hero-buttons">
+                    <a href="/explorearticle/explorearticleindex.html" class="btn-primary">Explore Articles &rarr;</a>
+                    <a href="#" class="btn-secondary" id="heroBrowse">Browse Categories</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/images/hero.png" alt="Developer Setup">
+            </div>
+        </div>
+    </section>
+
+   <!-- Categories Grid Section (Matching image_59115b.png) -->
+<section class="categories-section" id="categoriesBlock">
+    <h2 class="section-title">Explore Popular Categories</h2>
+    <div class="categories-grid">
+        <div class="category-card" data-category="laptops">
+            <div class="cat-icon icon-purple"><i class="fa-solid fa-laptop"></i></div>
+            <h3>Laptops & PC</h3>
+            <p class="article-count">12 Articles</p>
+        </div>
+        <div class="category-card" data-category="gear">
+            <div class="cat-icon icon-blue"><i class="fa-solid fa-keyboard"></i></div>
+            <h3>Coding Gear</h3>
+            <p class="article-count">18 Articles</p>
+        </div>
+        <div class="category-card" data-category="resources">
+            <div class="cat-icon icon-green"><i class="fa-solid fa-book-open"></i></div>
+            <h3>Study Resources</h3>
+            <p class="article-count">15 Articles</p>
+        </div>
+        <div class="category-card" data-category="ai">
+            <div class="cat-icon icon-orange"><i class="fa-solid fa-microchip"></i></div>
+            <h3>AI Tools</h3>
+            <p class="article-count">14 Articles</p>
+        </div>
+        <div class="category-card" data-category="programming">
+            <div class="cat-icon icon-indigo"><i class="fa-solid fa-code"></i></div>
+            <h3>Programming</h3>
+            <p class="article-count">20 Articles</p>
+        </div>
+        <div class="category-card" data-category="career">
+            <div class="cat-icon icon-pink"><i class="fa-solid fa-briefcase"></i></div>
+            <h3>Career Guide</h3>
+            <p class="article-count">10 Articles</p>
+        </div>
+    </div>
+</section>
+
+<!-- Enhanced About Section -->
+    <section id="aboutSection" class="about-section">
+        <div class="about-card-glow">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="about-badge"><i class="fa-solid fa-sparkles"></i> Behind The Screen</span>
+                    <h2>Fueling Your Journey From <span class="purple-text">Campus to Code</span></h2>
+                    <p class="about-lead">
+                        Hey there! I'm <strong>Himanshi</strong>. I founded <strong>Code & Campus</strong> to bridge the gap between academic theory and real-world tech engineering. 
+                    </p>
+                    <p class="about-body">
+                        Whether you're struggling to choose the ultimate programming laptop, looking for a foolproof full-stack roadmap, or trying to optimize your workspace with production-grade coding gear—this space is built just for you. No fluff, just practical, field-tested tech advice to help you build fast and study smart.
+                    </p>
+                    <div class="about-metrics">
+                        <div class="metric-item">
+                            <h4>2K+</h4>
+                            <p>Students Hooked</p>
+                        </div>
+                        <div class="metric-item">
+                            <h4>50+</h4>
+                            <p>Deep-Dive Guides</p>
+                        </div>
+                        <div class="metric-item">
+                            <h4>0%</h4>
+                            <p>Fluff Guaranteed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="code-window-mockup">
+                        <div class="window-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="window-title">himanshi.js</span>
+                        </div>
+                        <div class="window-body">
+                            <pre><code><span class="keyword">const</span> creator = {
+  name: <span class="string">'Himanshi'</span>,
+  role: <span class="string">'Tech Mentor & Curator'</span>,
+  mission: <span class="string">'Empower student devs'</span>,
+  coffeeConvertedToCode: <span class="number">Infinity</span>
+};
+
+<span class="comment">// Let's build something epic together.</span>
+<span class="keyword">export default</span> creator;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <div class="logo">
+                    <span class="logo-icon">&lt;/&gt;</span> <span class="logo-text">Code <span class="amp">&amp;</span> Campus</span>
+                </div>
+                <p class="brand-desc">Helping students and developers discover the best tech, tools and resources to grow and succeed.</p>
+            </div>
+            <div class="footer-links-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#homeSection">Home</a></li>
+                    <li><a href="/explorearticle/explorearticleindex.html">All Articles</a></li>
+                    <li><a href="#aboutSection">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Code & Campus. All rights reserved.</p>
+            <p>Made with <span class="heart">&hearts;</span> by Himanshi</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Campus - Article View</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --card-dark: #111827;
+            --accent-purple: #6366f1;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1f2937;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Top Navigation Bar Mimic */
+        .navbar {
+            background-color: rgba(10, 15, 29, 0.8);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(8px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span { color: var(--accent-purple); }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--accent-purple); }
+
+        /* Main Structural Split Layout Container */
+        .main-layout {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 2 shares left main content, 1 share right sidebar */
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout { grid-template-columns: 1fr; }
+        }
+
+        /* --- LEFT SIDE: ARTICLE HEADER & CONTENT --- */
+        .breadcrumbs {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            text-transform: capitalize;
+        }
+
+        .tag-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.category { background-color: rgba(99, 102, 241, 0.2); color: #818cf8; }
+        .badge.featured { background-color: rgba(236, 72, 153, 0.2); color: #f472b6; }
+
+        h1 {
+            font-size: 38px;
+            line-height: 1.2;
+            margin: 0 0 15px 0;
+            font-weight: 800;
+        }
+
+        .sub-headline {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .meta-author-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-details-text div:first-child { font-weight: 600; font-size: 14px; }
+        .author-details-text div:last-child { font-size: 12px; color: var(--text-muted); }
+
+        .engagement-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .action-btn:hover { border-color: var(--accent-purple); color: var(--text-main); }
+
+        .main-banner-img {
+            width: 100%;
+            max-height: 440px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 35px;
+        }
+
+        .article-body-content {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #d1d5db;
+            white-space: pre-wrap;
+        }
+
+        /* Author Bio Section Card */
+        .author-bio-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .author-bio-card img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+
+        .bio-text h4 { margin: 0 0 5px 0; font-size: 16px; color: var(--text-main); }
+        .bio-text p { margin: 0; font-size: 13px; color: var(--text-muted); }
+
+        /* --- RIGHT SIDE: COMPONENT SIDEBAR --- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .widget-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .widget-card h4 {
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        /* Mock Table of Contents */
+        .toc-list { list-style: none; padding: 0; margin: 0; }
+        .toc-list li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(31, 41, 55, 0.5);
+            display: flex;
+            gap: 10px;
+        }
+        .toc-list li span { color: var(--accent-purple); font-weight: bold; }
+
+        /* Newsletter Box Setup */
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: white;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-purple);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="explorearticleindex.html" class="logo">💻 Code<span>&</span>Campus</a>
+        <a href="explorearticleindex.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Explore</a>
+    </header>
+
+    <main class="main-layout">
+        
+        <section class="left-content">
+            <div class="breadcrumbs">Home &gt; Articles &gt; <span id="breadTitle">Loading</span></div>
+            
+            <div class="tag-row">
+                <span class="badge category" id="artCategory">Loading...</span>
+                <span class="badge featured">Featured</span>
+            </div>
+
+            <h1 id="artTitle">Loading Article...</h1>
+            <div class="sub-headline" id="artSub">Read the full technical report and implementation guide down below.</div>
+
+            <div class="meta-author-strip">
+                <div class="author-box">
+                    <img src="https://i.pravatar.cc/100?img=32" class="author-avatar" alt="Himanshi">
+                    <div class="author-details-text">
+                        <div>Himanshi</div>
+                        <div>Published on <span id="artDate">Recent</span> • 8 min read</div>
+                    </div>
+                </div>
+                <div class="engagement-actions">
+                    <button class="action-btn"><i class="fa-regular fa-heart"></i> 128</button>
+                    <button class="action-btn"><i class="fa-regular fa-bookmark"></i></button>
+                </div>
+            </div>
+
+            <img src="" id="artImage" class="main-banner-img" alt="Featured Article Image" style="display:none;">
+            
+            <div class="article-body-content" id="artDesc">
+                Streaming your documentation setup from cloud clusters...
+            </div>
+
+            <div class="author-bio-card">
+                <img src="https://i.pravatar.cc/100?img=32" alt="Himanshi">
+                <div class="bio-text">
+                    <h4>Written by Himanshi</h4>
+                    <p>Tech Blogger & CSE student sharing guides and resource links to help student developers build clean applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            
+            <div class="widget-card">
+                <h4>Table of Contents</h4>
+                <ul class="toc-list">
+                    <li><span>1</span> Overview & Installation</li>
+                    <li><span>2</span> Code Architecture Pattern</li>
+                    <li><span>3</span> Implementation Pipeline</li>
+                    <li><span>4</span> Summary Analysis Conclusion</li>
+                </ul>
+            </div>
+
+            <div class="widget-card">
+                <h4>Newsletter</h4>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top:0;">Get fresh development roadmaps sent directly to your inbox.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address...">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+
+        </aside>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            if (!articleId) {
+                document.getElementById('artTitle').innerText = "No Document Identifier Found";
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/articles/${articleId}`);
+                if (!response.ok) throw new Error("Article could not be retrieved.");
+
+                const article = await response.json();
+
+                // Hydrate HTML markup views
+                document.getElementById('artTitle').innerText = article.title;
+                document.getElementById('breadTitle').innerText = article.title;
+                document.getElementById('artCategory').innerText = article.category || article.catLabel || 'General';
+                document.getElementById('artDesc').innerText = article.desc;
+                
+                // Render Subheadline safely
+                document.getElementById('artSub').innerText = article.subHeadline || "Read the full technical report and implementation guide down below.";
+                
+                if(article.date) {
+                    document.getElementById('artDate').innerText = article.date;
+                }
+
+                const imgElement = document.getElementById('artImage');
+                imgElement.src = article.image || article.img || 'https://picsum.photos/800/450';
+                imgElement.style.display = "block";
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('artDesc').innerText = "An error occurred connecting to your MongoDB endpoint cluster. Check console for details.";
+            }
+        });
+    </script>
+</body>
+</html>

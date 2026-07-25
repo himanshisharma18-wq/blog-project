@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Campus - Professional Admin Dashboard</title>
+    <link rel="stylesheet" href="adminstyle.css">
+    <style>
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+        .info-note { font-size: 12px; color: #64748b; margin-top: 4px; }
+        
+        #aiBtn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            background-color: #8b5cf6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <h2>Publish a Professional Article</h2>
+        
+        <form id="articleForm">
+            <div class="form-group">
+                <label for="articleTitle">Article Title</label>
+                <input type="text" id="articleTitle" placeholder="e.g., 15 Best AI Tools Every Student Should Try in 2026" required />
+            </div>
+
+            <div class="form-group">
+                <label for="articleSub">Sub-headline / Short Summary</label>
+                <input type="text" id="articleSub" placeholder="e.g., Boost productivity, study smart..." required />
+                <div class="info-note">This appears directly underneath your title on the full article reading page.</div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="articleCategory">Category</label>
+                    <select id="articleCategory" required>
+                        <option value="">-- Select Category --</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="mobiles">Mobiles</option>
+                        <option value="coding">Coding</option>
+                        <option value="ai">Artificial Intelligence</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="articleImage">Featured Image URL</label>
+                    <input type="text" id="articleImage" placeholder="https://images.unsplash.com/..." required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="articleDesc">Full Article Content</label>
+                <textarea id="articleDesc" rows="8" placeholder="Write your full structured article here..." required></textarea>
+                <div class="info-note">Tip: Press Enter twice to create clean professional paragraphs.</div>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="aiBtn">✨ Generate with Gemini AI</button>
+            </div>
+
+            <button type="submit" style="width: 100%; padding: 12px; background-color: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                Publish to Code Campus Cloud
+            </button>
+        </form>
+    </div>
+
+    <script src="adminscript.js"></script>
+</body>
+</html>

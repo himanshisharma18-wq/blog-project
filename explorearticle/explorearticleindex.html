@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Articles - Code & Campus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="explorearticlestyle.css">
+</head>
+<body class="dark-theme">
+
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo" id="logoHome" style="cursor: pointer;" onclick="window.location.href='../index.html'">
+                <span class="logo-icon">&lt;/&gt;</span> <span class="logo-text">Code <span class="amp">&amp;</span> Campus</span>
+            </div>
+            <nav class="nav-links">
+                <a href="../index.html#homeSection">Home</a>
+                <a href="#" class="active">Categories <i class="fa-solid fa-chevron-down"></i></a>
+                <a href="../index.html#aboutSection">About</a>
+                <a href="../index.html#newsletterBlock">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="icon-btn" id="themeToggle"><i class="fa-regular fa-moon"></i></button>
+                <button class="subscribe-btn-nav" onclick="window.location.href='../index.html#newsletterBlock'"><i class="fa-regular fa-envelope"></i> Subscribe</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="explore-banner">
+        <div class="banner-container">
+            <div class="banner-content">
+                <p class="breadcrumbs">Home &nbsp;&rsaquo;&nbsp; Articles</p>
+                <h1>Explore <span class="purple-text">Articles</span></h1>
+               
+                <p class="subheading">Discover in-depth guides, tutorials, reviews and resources to accelerate your learning and developer journey.</p>
+            </div>
+            <div class="banner-graphic">
+                <div class="glow-orb"></div>
+                 
+    <img src="exparthero.png" alt="Explore Graphics" class="floating-img">
+
+            </div>
+        </div>
+    </section>
+
+    <section class="controls-section">
+        <div class="controls-container">
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="articleSearch" placeholder="Search articles...">
+            </div>
+            <div class="dropdowns-wrapper">
+                <select id="catDropdown">
+                    <option value="all">All Categories</option>
+                    <option value="laptops">Laptops & PC</option>
+                    <option value="gear">Coding Gear</option>
+                    <option value="ai">AI Tools</option>
+                    <option value="programming">Programming</option>
+                    <option value="career">Career Guide</option>
+                </select>
+                <select id="tagDropdown">
+                    <option value="all">All Tags</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="react">React</option>
+                    <option value="python">Python</option>
+                </select>
+                <select id="sortDropdown">
+                    <option value="latest">Latest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+                <button class="filter-btn"><i class="fa-solid fa-sliders"></i> Filter</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-box">
+                <h3>Categories</h3>
+                <ul class="category-list">
+                    <li class="active-cat" data-cat="all"><span>All Articles</span> <span class="count-badge">120</span></li>
+                    <li data-cat="laptops"><span>Laptops & PC</span> <span class="count-badge">12</span></li>
+                    <li data-cat="gear"><span>Coding Gear</span> <span class="count-badge">18</span></li>
+                    <li data-cat="ai"><span>AI Tools</span> <span class="count-badge">16</span></li>
+                    <li data-cat="programming"><span>Programming</span> <span class="count-badge">20</span></li>
+                    <li data-cat="career"><span>Career Guide</span> <span class="count-badge">10</span></li>
+                    <li data-cat="resources"><span>Study Resources</span> <span class="count-badge">15</span></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-box">
+                <h3>Popular Tags</h3>
+                <div class="tags-cloud">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">React</span>
+                    <span class="tag">AI</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Next.js</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Productivity</span>
+                    <span class="tag">VS Code</span>
+                </div>
+                <a href="#" class="view-all-tags">View all tags &rarr;</a>
+            </div>
+
+            <div class="sidebar-box stay-updated-box">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter and never miss an update.</p>
+                <button class="btn-purple-wide">Subscribe Now</button>
+            </div>
+        </aside>
+
+        <section class="content-section">
+            <div class="articles-grid" id="mainArticlesGrid"></div>
+
+            <div class="pagination-container" id="paginationEngine"></div>
+        </section>
+    </main>
+
+    <section class="newsletter-section">
+        <div class="newsletter-box">
+            <div class="newsletter-left">
+                <div class="envelope-icon"><i class="fa-regular fa-envelope-open"></i></div>
+                <div class="newsletter-text">
+                    <h3>Join 2,000+ students & developers</h3>
+                    <p>Get the best tech guides, tools and resources straight to your inbox.</p>
+                </div>
+            </div>
+            <form class="newsletter-form" id="footerNewsletter">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit"><i class="fa-regular fa-envelope"></i> Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <div class="logo">
+                    <span class="logo-icon">&lt;/&gt;</span> <span class="logo-text">Code <span class="amp">&amp;</span> Campus</span>
+                </div>
+                <p class="brand-desc">Helping students and developers discover the best tech, tools and resources to grow and succeed.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links-grid">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">All Articles</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Laptops & PC</a></li>
+                        <li><a href="#">Coding Gear</a></li>
+                        <li><a href="#">AI Tools</a></li>
+                        <li><a href="#">Programming</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Free Tools</a></li>
+                        <li><a href="#">Cheatsheets</a></li>
+                        <li><a href="#">Roadmaps</a></li>
+                        <li><a href="#">Books</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Code & Campus. All rights reserved.</p>
+            <p>Made with <span class="heart">&hearts;</span> by Himanshi</p>
+        </div>
+    </footer>
+
+    <script src="explorearticlescript.js"></script>
+</body>
+</html>
