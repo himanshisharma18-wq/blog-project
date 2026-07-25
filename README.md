@@ -89,8 +89,8 @@ I am currently accepting new content and feature suggestions!
 
 If you would like to have a **custom blog or article** featured on this platform, or if you want to collaborate on the project:
 
-* **Connect with me on LinkedIn:** [Insert your LinkedIn Profile Link Here]
-* **Reach out on other socials:** [Insert your preferred social link here]
+* **Connect with me on LinkedIn:** [www.linkedin.com/in/himanshi-sharma-wq]
+* **Reach out on other socials:** [Discord(User_Name) = bit_crusher_44579] , [INSTAGRAM(User_Name) = himanshisharma2890]
 
 ---
 
