@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- DYNAMIC URL CONFIG ---
+    // This automatically switches between localhost and your live Render URL
+    const BASE_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ? "http://localhost:5000"
+        : "https://blog-project-86ee.onrender.com";
+
     const categoryCards = document.querySelectorAll('.category-card');
     
     // 1. Navigation: Smooth scroll within main page for elements
@@ -64,24 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // 5. Admin Password Verification Link
     const adminBtn = document.getElementById('adminLink');
 
@@ -94,13 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!enteredPassword) return;
 
             try {
-                const response = await fetch('http://localhost:5000/api/verify-admin', {
+                // FIXED: Used `${BASE_URL}` here
+                const response = await fetch(`${BASE_URL}/api/verify-admin`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ password: enteredPassword })
                 });
 
-                // Check if backend returned valid JSON (prevents "Unexpected token '<'" crash on 404 HTML pages)
+                // Check if backend returned valid JSON
                 const contentType = response.headers.get('content-type');
                 if (!contentType || !contentType.includes('application/json')) {
                     throw new Error(`Server returned HTML/non-JSON response with status ${response.status}`);
@@ -109,9 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    // Normalize URL formatting to prevent double slash bugs (//secret-admin)
+                    // Normalize URL formatting
                     const route = data.adminUrl.startsWith('/') ? data.adminUrl : `/${data.adminUrl}`;
-                    window.location.href = `http://localhost:5000${route}`;
+                    // FIXED: Used `${BASE_URL}` here for the redirect
+                    window.location.href = `${BASE_URL}${route}`;
                 } else {
                     alert(data.message || "Invalid Password!");
                 }
