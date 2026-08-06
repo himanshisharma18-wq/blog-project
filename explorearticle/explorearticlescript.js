@@ -1,3 +1,5 @@
+const API_BASE_URL = "https://blog-project-86ee.onrender.com";
+
 let ALL_ARTICLES = []; // Starts empty, will be filled by the backend
 
 // Strictly limit view state to 3 items per page
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 2. Fetch live data from your running backend server API
     try {
-        const response = await fetch('http://localhost:5000/api/articles');
+        const response = await fetch('/api/articles');
         ALL_ARTICLES = await response.json();
     } catch (error) {
         console.error("Failed to load articles from backend:", error);

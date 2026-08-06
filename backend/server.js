@@ -1,3 +1,4 @@
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -13,6 +14,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log(req.method, req.url);
+    next();
+});
+
 // Prevent direct static bypass to admin.html
 app.use((req, res, next) => {
     if (req.path === '/admin.html') {
@@ -25,6 +31,7 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, '../')));
 
 // Initialize Gemini API
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Connect to MongoDB
@@ -76,18 +83,31 @@ app.get('/api/test', (req, res) => {
 
 // AI Generation Endpoint
 app.post('/api/generate-content', async (req, res) => {
+    console.log("Generate route hit");
     try {
         const { prompt } = req.body;
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
         
         const result = await model.generateContent(prompt);
         const text = result.response.text();
         
         res.json({ content: text });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    }catch (error) {
+    console.error("========== GEMINI ERROR ==========");
+    console.error(error);
+
+    if (error.response) {
+        console.error("Status:", error.response.status);
+        console.error("Data:", error.response.data);
     }
+
+    res.status(500).json({
+        message: error.message,
+        error: String(error)
+    });
+}
 });
+
 
 // Fetch all articles
 app.get('/api/articles', async (req, res) => {
