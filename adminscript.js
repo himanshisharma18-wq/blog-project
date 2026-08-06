@@ -1,3 +1,5 @@
+const API_URL = "https://blog-project-86ee.onrender.com";
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById('articleForm');
     
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // 2. Fire structured content to your active backend port
-            const response = await fetch('http://localhost:5000/api/articles', {
+            const response = await fetch(`${API_URL}/api/articles`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -61,7 +63,7 @@ document.getElementById('aiBtn').addEventListener('click', async () => {
     descArea.value = "Generating content, please wait...";
 
     try {
-        const response = await fetch('http://localhost:5000/api/generate-content', {
+        const response = await fetch(`${API_URL}/api/generate-content`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt: `Write a professional, structured article titled: ${title}. Include sections for Overview, Architecture, Implementation, and Summary.` })
